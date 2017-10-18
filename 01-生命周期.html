@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    父组件：app
+    <test v-if='testShow'></test>
+  </div>
+  <script>
+    let test = {
+      template: `<div>子组件：test</div>`,
+      beforeDestroy() {
+        // 实例销毁之前调用。实例销毁 即该组件dom全部被移除，this指向实例本身
+        console.log('beforeDestroy')
+      },
+      destroyed() {
+        // 实例销毁之后调用 
+        console.log('destroyed')
+      }
+    }
+    new Vue({
+      el: '#app',
+      components: {
+        test
+      },
+      data() {
+        return {
+          testShow: true
+        }
+      },
+      beforeCreate() {
+        // 创建vue实例之前
+        console.log('beforeCreate')
+      },
+      created() {
+        // 实例创建完成
+        console.log('created')
+      },
+      beforeMount() {
+        // 实例挂载之前，render函数首次调用
+        console.log('beforeMount')
+      },
+      mounted() {
+        // 实例挂载完成，但是子组件的dom并不一定渲染完成，确保子组件dom渲染完成用   `Vue.nextTick(() => //todo) 或者 this.$nextTick(()=> //todo)`
+        console.log('mounted')
+      },
+      beforeUpdate() {
+        // 数据更新前调用，发生在虚拟dom内部 此阶段重复修改数据不会触发重新渲染的过程
+        console.log('beforeUpdate')
+      },
+      updated() {
+        // 数据更新完毕调用，但是子组件的dom并不一定渲染完成，确保子组件dom渲染完成用  Vue.nextTick(() => //todo) 或者 this.$nextTick(()=> //todo)
+        // 另外不太推荐在这个情况操作dom，如果能用computed/watch代替取而代之最好。
+        console.log('updated')
+      }
+    })
+  </script>
+</body>
+
+</html>
