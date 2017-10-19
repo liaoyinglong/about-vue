@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <input v-model='inputVal'>
+    <!-- <input :value='inputVal' @input='inputVal = $event.target.value'> -->
+    <br> 当前输入：{{inputVal}}
+    <hr>
+    <input type="checkbox" v-model='checkboxVal'>
+    <!-- <input type="checkbox" @change='checkboxVal= $event.target.checked'> -->
+    <br> 当前选择 : {{checkboxVal}}
+    <hr>
+    <child-input v-model='childInputValue'></child-input>
+    <br> childInput组件输入：{{childInputValue}}
+
+  </div>
+  <script>
+    const childInput = {
+      template: `
+      <div>
+        <input type="text" @input='handleInput($event)'/>
+      </div>
+      `,
+      methods: {
+        handleInput(e) {
+          this.$emit('input', e.target.value)
+        }
+      }
+    }
+
+    const vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+          inputVal: '',
+          checkboxVal: false,
+          childInputValue: '',
+        }
+      },
+      components: {
+        childInput
+      }
+    })
+  </script>
+</body>
+
+</html>
