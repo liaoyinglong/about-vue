@@ -30,6 +30,15 @@
 
 - ### 推荐一个工具  `poi`
   - what? 一个快速编译vue文件的工具
+
   - why? 一个命令就能编译.vue文件
-  - how? 有一个入口 main.js ，然后cd到当前目录，`poi main.js`， 
+
+  - how? 有一个入口 main.js ，然后cd到当前目录，打开命令行 `poi main.js`， 
+
     更多说明请看 GitHub ：https://github.com/egoist/poi
+---
+- ps: 在线写ng/react的网站看这里 https://stackblitz.com/
+
+- 再ps：关于翻墙最最最简单的方法就是 http://www.ggfwzs.com/ 
+
+  （当然作为一个免费的软件，它有缺点，它只是给你提供了访问谷歌搜索、谷歌邮箱和谷歌商店等等小流量的网站，像YouTube还是上不了的）
