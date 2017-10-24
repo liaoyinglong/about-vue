@@ -1,21 +1,12 @@
 <template>
   <div>
-    
+    <headerComponent v-for="item in 6" :level='item' msg='hello' :key="item"></headerComponent>
   </div>
 </template>
 
 <script>
+import headerComponent from './headerComponent'
 export default {
-  components: {},
-  data() {
-    return {
-      currentView: 'childA',
-    }
-  },
-  methods: {
-    changeView() {
-      this.currentView = this.currentView === 'childA' ? 'childB' : 'childA'
-    },
-  },
+  components: { headerComponent },
 }
 </script>
